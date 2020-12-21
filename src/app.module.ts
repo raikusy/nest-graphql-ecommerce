@@ -1,11 +1,11 @@
 import { GraphQLModule } from '@nestjs/graphql';
 import { Module } from '@nestjs/common';
-import { AppController } from './controllers/app.controller';
-import { AppService } from './services/app.service';
-import { AuthModule } from './resolvers/auth/auth.module';
-import { UserModule } from './resolvers/user/user.module';
-import { PostModule } from './resolvers/post/post.module';
-import { AppResolver } from './resolvers/app.resolver';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { AuthModule } from './features/auth/auth.module';
+import { UserModule } from './features/user/user.module';
+import { PostModule } from './features/post/post.module';
+import { AppResolver } from './app.resolver';
 import { DateScalar } from './common/scalars/date.scalar';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import config from './configs/config';

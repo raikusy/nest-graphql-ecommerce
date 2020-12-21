@@ -1,18 +1,18 @@
-import { PrismaService } from './../../services/prisma.service';
-import { PaginationArgs } from '../../common/pagination/pagination.args';
-import { PostIdArgs } from '../../models/args/post-id.args';
-import { UserIdArgs } from '../../models/args/user-id.args';
+import { PrismaService } from '@app/common/services/prisma.service';
+import { PaginationArgs } from '@app/common/pagination/pagination.args';
+import { PostIdArgs } from './dto/post-id.args';
+import { UserIdArgs } from './dto/user-id.args';
 import { Resolver, Query, Parent, Args, ResolveField } from '@nestjs/graphql';
-import { Post } from '../../models/post.model';
-import { PostOrder } from '../../models/inputs/post-order.input';
-import { PostConnection } from 'src/models/pagination/post-connection.model';
+import { Post } from './models/post.model';
+import { PostOrder } from './dto/post-order.input';
+import { PostConnection } from '@app/features/post/models/post-connection.model';
 import { findManyCursorConnection } from '@devoxa/prisma-relay-cursor-connection';
 
-@Resolver((of) => Post)
+@Resolver((_of) => Post)
 export class PostResolver {
   constructor(private prisma: PrismaService) {}
 
-  @Query((returns) => PostConnection)
+  @Query((_returns) => PostConnection)
   async publishedPosts(
     @Args() { skip, after, before, first, last }: PaginationArgs,
     @Args({ name: 'query', type: () => String, nullable: true })
@@ -47,7 +47,7 @@ export class PostResolver {
     return a;
   }
 
-  @Query((returns) => [Post])
+  @Query((_returns) => [Post])
   userPosts(@Args() id: UserIdArgs) {
     return this.prisma.user
       .findUnique({ where: { id: id.userId } })
@@ -62,7 +62,7 @@ export class PostResolver {
     // });
   }
 
-  @Query((returns) => Post)
+  @Query((_returns) => Post)
   async post(@Args() id: PostIdArgs) {
     return this.prisma.post.findUnique({ where: { id: id.postId } });
   }

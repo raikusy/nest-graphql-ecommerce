@@ -6,11 +6,11 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { PasswordService } from './password.service';
-import { SignupInput } from '../resolvers/auth/dto/signup.input';
-import { PrismaService } from './prisma.service';
+import { PasswordService } from '@app/common/services/password.service';
+import { SignupInput } from './dto/signup.input';
+import { PrismaService } from '@app/common/services/prisma.service';
 import { User, PrismaClientKnownRequestError } from '@prisma/client';
-import { Token } from '../models/token.model';
+import { Token } from './token.model';
 import { ConfigService } from '@nestjs/config';
 import { SecurityConfig } from 'src/configs/config.interface';
 

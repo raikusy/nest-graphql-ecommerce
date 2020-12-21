@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "blog"."Role" AS ENUM ('ADMIN', 'USER');
+CREATE TYPE "dynamicraiment"."Role" AS ENUM ('ADMIN', 'USER');
 
 -- CreateTable
 CREATE TABLE "User" (
